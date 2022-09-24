@@ -40,7 +40,7 @@ const ExportCSV = () => {
         pagenum = 1
         let coi 
         if(url) {
-          coi  = await axios.get(url+'?page='+pagenum)
+          coi  = await axios.get(url+'/api/copt/sale-notifications.json?page='+pagenum)
         }
 
         while (coi && coi.data.sale_notifications.length !== 0)
@@ -48,7 +48,7 @@ const ExportCSV = () => {
             pagenum++
             sale_data = sale_data.concat(coi.data.sale_notifications)
 
-            coi = await axios.get(url+'?page='+pagenum)
+            coi = await axios.get(url+'/api/copt/sale-notifications.json?page='+pagenum)
             console.log(sale_data)
         }
         for (let i = 0 ;i < sale_data.length ; i++) {
